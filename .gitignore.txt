@@ -1,0 +1,8 @@
+# Backend bağımlılıkları
+oto-yikama-backend/node_modules/
+oto-yikama-backend/.env
+oto-yikama-backend/dist/
+
+# İleride gelecek Frontend için (şimdiden hazırlık)
+oto-yikama-frontend/node_modules/
+oto-yikama-frontend/dist/
