@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  password     String
+  role         String 
+  createdAt    DateTime      @default(now())
+
+  businesses   Business[]
+  reservations Reservation[]
+}
+
+model Business {
+  id           Int           @id @default(autoincrement())
+  name         String
+  address      String
+  userId       Int
+  
+  openTime     Int           // Örn: 9 (Sabah 09:00)
+  closeTime    Int           // Örn: 18 (Akşam 18:00)
+  photos       String[]      // Max 3 fotoğraf linki tutacak dizi ['url1', 'url2']
+
+  user         User          @relation(fields: [userId], references: [id])
+  services     Service[]
+  reservations Reservation[]
+}
+
+model Service {
+  id           Int           @id @default(autoincrement())
+  name         String
+  price        Float
+  duration     Int
+  businessId   Int
+
+  business     Business      @relation(fields: [businessId], references: [id])
+  reservations Reservation[]
+}
+
+model Reservation {
+  id           Int           @id @default(autoincrement())
+  date         DateTime
+  time         String
+  userId       Int
+  businessId   Int
+  serviceId    Int
+
+  user         User          @relation(fields: [userId], references: [id])
+  business     Business      @relation(fields: [businessId], references: [id])
+  service      Service       @relation(fields: [serviceId], references: [id])
+}
