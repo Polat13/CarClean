@@ -46,16 +46,6 @@ export const HeroSection = () => {
             >
               Randevu Al
             </Button>
-            <Button 
-              variant="white" 
-              className="w-full sm:w-auto px-8 py-4 text-base font-bold shadow-md"
-              onClick={() => {
-                const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-                router.push(token ? '/businesses/nearby' : '/auth');
-              }}
-            >
-              Yakınımdaki Yıkamacılar
-            </Button>
           </div>
         </div>
 

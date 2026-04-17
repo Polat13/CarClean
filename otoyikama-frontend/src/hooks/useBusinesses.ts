@@ -1,12 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
+import { Business, BUSINESS_API_CONFIG } from "@/constants/business";
+
+const getBusinesses = async (): Promise<Business[]> => {
+  const response = await fetch(
+    `${BUSINESS_API_CONFIG.baseUrl}${BUSINESS_API_CONFIG.endpoints.list}`,
+  );
+
+  if (!response.ok) {
+    throw new Error("Yikamacilar getirilemedi");
+  }
+
+  return response.json();
+};
 
 export function useBusinesses() {
   return useQuery({
-    queryKey: ["businesses"], // Cache anahtarı
-    queryFn: async () => {
-      const response = await fetch("http://localhost:3000/business");
-      if (!response.ok) throw new Error("Dükkanlar getirilemedi");
-      return response.json();
-    },
+    queryKey: ["businesses"],
+    queryFn: getBusinesses,
   });
 }

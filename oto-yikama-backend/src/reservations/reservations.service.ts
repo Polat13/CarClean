@@ -26,7 +26,7 @@ export class ReservationsService {
       where: {
         businessId: data.businessId,
         date: reservationDate,
-        time: data.time, 
+        time: data.time,
       },
     });
 
@@ -34,7 +34,7 @@ export class ReservationsService {
       throw new BadRequestException('Üzgünüz, seçtiğiniz saat için kapasite doludur.');
     }
 
-    // 4. KAYIT
+    // 4. KAYIT (Default status: PENDING)
     const newReservation = await this.prisma.reservation.create({
       data: {
         date: reservationDate,
@@ -42,6 +42,7 @@ export class ReservationsService {
         userId: data.userId,
         businessId: data.businessId,
         serviceId: data.serviceId,
+        status: 'PENDING', // Yeni eklediğimiz alan
       },
     });
 
@@ -56,9 +57,10 @@ export class ReservationsService {
     return this.prisma.reservation.findMany({
       where: { userId: Number(userId) },
       include: {
-        business: true, 
-        service: true,  
+        business: true,
+        service: true,
       },
+      orderBy: { date: 'desc' }, // En yeni randevu en üstte
     });
   }
 
@@ -67,9 +69,31 @@ export class ReservationsService {
     return this.prisma.reservation.findMany({
       where: { businessId: Number(businessId) },
       include: {
-        user: { select: { email: true } }, 
-        service: true,                     
+        user: { select: { email: true } }, // 'name: true' kısmını sildik çünkü User modelinde yok
+        service: true,
       },
+      orderBy: [
+        { date: 'asc' },
+        { time: 'asc' }
+      ],
+    });
+  }
+
+  // --- CONTROLLER'DA HATA VEREN EKSİK FONKSİYON ---
+  async updateReservationStatus(id: number, status: string) {
+    // Randevu var mı kontrol et
+    const reservation = await this.prisma.reservation.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Güncellenmek istenen randevu bulunamadı.');
+    }
+
+    // Durumu güncelle
+    return this.prisma.reservation.update({
+      where: { id: Number(id) },
+      data: { status: status },
     });
   }
 
@@ -86,6 +110,8 @@ export class ReservationsService {
       where: {
         businessId: Number(businessId),
         date: reservationDate,
+        // İptal edilen randevuları kapasiteden düşmek için (isteğe bağlı)
+        NOT: { status: 'CANCELLED' } 
       },
     });
 
@@ -93,20 +119,19 @@ export class ReservationsService {
 
     // İşletmenin açılış saatinden kapanış saatine kadar döngü
     for (let hour = business.openTime; hour < business.closeTime; hour++) {
-      // Saati "09:00", "14:00" formatında garantilemek için padStart ekledik
-      const timeString = `${hour.toString().padStart(2, '0')}:00`; 
+      const timeString = `${hour.toString().padStart(2, '0')}:00`;
       
       const count = existingReservations.filter(r => r.time === timeString).length;
 
-      // 2'den az randevu varsa boş saatlere ekle
+      // Kapasite kontrolü (Kapasite: 2)
       if (count < 2) {
         availableHours.push(timeString);
       }
     }
 
-    return { 
-      date: date, 
-      availableHours: availableHours 
+    return {
+      date: date,
+      availableHours: availableHours
     };
   }
 }

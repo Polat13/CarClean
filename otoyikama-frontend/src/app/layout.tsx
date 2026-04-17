@@ -1,7 +1,18 @@
+import type { Metadata } from "next"; // Metadata tipini ekledik
 import QueryProvider from "@/components/providers/QueryProvider";
-import Navbar from "@/components/layout/Navbar"; // Yeni ekledik
-import Footer from "@/components/layout/Footer"; // Yeni ekledik
+import Navbar from "@/components/layout/Navbar"; 
+import Footer from "@/components/layout/Footer"; 
 import "./globals.css";
+
+// --- GOOGLE İKON VE SİTE ADI AYARLARI ---
+export const metadata: Metadata = {
+  title: "CarClean",
+  description: "En yakın oto yıkamacıdan anında randevu al, aracını parlat.",
+  icons: {
+    icon: "/images/ikon.svg", // Tarayıcı sekmesindeki ikon
+    apple: "/images/ikon.svg", // iPhone ana ekrana ekleme ikonu
+  },
+};
 
 export default function RootLayout({
   children,
@@ -10,11 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="tr">
-      {/* Body içinde flex-col kullanarak margin ihtiyacını ortadan kaldırıyoruz */}
       <body className="flex flex-col min-h-screen bg-gray-50">
         <QueryProvider>
           <Navbar />
-          {/* Main içeriği tüm boş alanı kaplasın */}
           <main className="flex flex-col flex-1 w-full">
             {children}
           </main>

@@ -1,11 +1,12 @@
-import { Injectable, BadRequestException , UnauthorizedException } from '@nestjs/common';
+import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private jwtService: JwtService) { }
 
   async createUser(data: CreateUserDto) {
     const existingUser = await this.prisma.user.findUnique({
@@ -19,8 +20,8 @@ export class UsersService {
     const newUser = await this.prisma.user.create({
       data: {
         email: data.email,
-        password: data.password, 
-        role: data.role || 'customer', 
+        password: data.password,
+        role: data.role || 'customer',
       },
     });
 
@@ -34,25 +35,32 @@ export class UsersService {
       }
     };
   }
+  // NOT: Constructor'da 'private jwtService: JwtService' ekli olmalı!
   async loginUser(data: LoginUserDto) {
-    // 1. Veritabanında bu emaile sahip biri var mı?
     const user = await this.prisma.user.findUnique({
       where: { email: data.email },
     });
 
-    // 2. Kullanıcı yoksa VEYA şifresi eşleşmiyorsa hata fırlat
-    // Not: Gerçek projelerde şifreler şifrelenir (bcrypt vb.), şu an MVP için doğrudan karşılaştırıyoruz.
     if (!user || user.password !== data.password) {
       throw new UnauthorizedException('Email veya şifre hatalı!');
     }
 
-    // 3. Giriş başarılıysa kullanıcının kimliğini (şifresi hariç) geri dön
+    // --- KRİTİK EKLEME: JWT TOKEN ÜRETİMİ ---
+    const payload = {
+      email: user.email,
+      sub: user.id,
+      role: user.role
+    };
+
+    const token = this.jwtService.sign(payload);
+
     return {
       message: 'Giriş başarılı!',
+      access_token: token, // Frontend artık bunu bekliyor
       user: {
         id: user.id,
         email: user.email,
-        role: user.role, // Frontend bu role bakıp yönlendirme yapacak
+        role: user.role,
       }
     };
   }

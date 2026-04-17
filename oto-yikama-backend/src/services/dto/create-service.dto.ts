@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber, IsInt, Min } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsInt, Min, IsOptional, IsArray } from 'class-validator';
 
 export class CreateServiceDto {
   @IsString()
@@ -12,6 +12,15 @@ export class CreateServiceDto {
   @IsInt({ message: 'Süre tam sayı (dakika) olmalıdır.' })
   @Min(10, { message: 'Bir hizmet en az 10 dakika sürmelidir.' })
   duration!: number; // Örn: 45 (dakika)
+
+  @IsString()
+  @IsOptional()
+  description?: string; // Örn: "Basınçlı su, köpük ve kurulama"
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  vehicleTypes?: string[]; // Örn: ["Sedan", "SUV"]
 
   @IsInt()
   @IsNotEmpty()

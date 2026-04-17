@@ -1,0 +1,40 @@
+
+> oto-yikama-backend@0.0.1 start:dev
+> nest start --watch
+
+[2J[3J[H[[90m15:57:50[0m] Starting compilation in watch mode...
+
+[[90m15:57:54[0m] Found 0 errors. Watching for file changes.
+
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrismaModule dependencies initialized[39m[38;5;3m +18ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mServicesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mReservationsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUsersModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBusinessModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAppController {/}:[39m[38;5;3m +38ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/, GET} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mUsersController {/users}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/register, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/login, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mBusinessController {/business}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/business, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/business/upload, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/business, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/business/owner/:userId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/business/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/business/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mServicesController {/services}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/services, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/services/business/:businessId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/services/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/services/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mReservationsController {/reservations}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/reservations, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/reservations/user/:userId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/reservations/business/:businessId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/reservations/available-hours, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/reservations/:id/status, PATCH} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 2876  - [39m17.04.2026 15:57:55 [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +43ms[39m

@@ -43,4 +43,12 @@ export class ServicesService {
       data: data,
     });
   }
+
+  // Hizmeti veritabanından sil
+  async deleteService(id: number) {
+    await this.prisma.service.delete({
+      where: { id: Number(id) },
+    });
+    return { message: 'Hizmet başarıyla silindi' };
+  }
 }
