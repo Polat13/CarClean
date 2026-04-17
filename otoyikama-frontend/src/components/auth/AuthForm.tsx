@@ -41,6 +41,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ role: externalRole, setRole:
       if (mode === AuthMode.LOGIN) {
         const res = await login(formData.email, formData.password);
         alert('Giriş Başarılı! Token: ' + res.access_token);
+        localStorage.setItem('token', res.access_token); // HeroSection yönlendirmesi için tokenı kaydet
         
         // Rol bazlı yönlendirme (İşletme vs Müşteri)
         if (role === UserRole.OWNER) {

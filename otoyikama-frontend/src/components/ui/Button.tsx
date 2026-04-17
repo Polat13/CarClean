@@ -2,7 +2,7 @@ import React from 'react';
 
 // Props arayüzü
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'outline';
+  variant?: 'primary' | 'outline' | 'white';
   children: React.ReactNode;
 }
 
@@ -18,7 +18,8 @@ export const Button: React.FC<ButtonProps> = ({
   // Varyant sözlüğü (Dictionary Pattern)
   const variants = {
     primary: "bg-[#0052BD] text-white hover:bg-blue-800",
-    outline: "border-2 border-[#0A58CA] text-[#0A58CA] hover:bg-blue-50"
+    outline: "border-2 border-[#0A58CA] text-[#0A58CA] hover:bg-blue-50",
+    white: "bg-white text-[#0A58CA] hover:bg-gray-50 shadow-md hover:shadow-lg font-semibold" 
   };
 
   return (

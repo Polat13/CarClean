@@ -1,5 +1,6 @@
 import QueryProvider from "@/components/providers/QueryProvider";
 import Navbar from "@/components/layout/Navbar"; // Yeni ekledik
+import Footer from "@/components/layout/Footer"; // Yeni ekledik
 import "./globals.css";
 
 export default function RootLayout({
@@ -14,9 +15,10 @@ export default function RootLayout({
         <QueryProvider>
           <Navbar />
           {/* Main içeriği tüm boş alanı kaplasın */}
-          <main className="flex flex-1 flex-col w-full">
+          <main className="flex flex-col flex-1 w-full">
             {children}
           </main>
+          <Footer />
         </QueryProvider>
       </body>
     </html>
