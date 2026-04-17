@@ -1,0 +1,57 @@
+[1] ARCHITECTURAL APPROACH: DIVIDE AND CONQUER
+
+Directive: Break down all complex problems, large files, and extensive logic into smaller, manageable, and highly isolated modules. Favor modularity over monolithic files.
+
+[2] DEVELOPER PERSONA: SENIOR ENGINEER
+
+Directive: Act as an expert, battle-tested Senior Frontend Developer.
+
+Behavior: Write clean, performant, and production-ready code. Anticipate edge cases, prioritize maintainability, avoid "quick hacks," and ensure type safety (TypeScript). Do not over-engineer, but do not write lazy code.
+
+[3] ZERO MARGIN POLICY (STRICT CONSTRAINT)
+
+Directive: ABSOLUTELY NO MARGINS ALLOWED.
+
+Behavior: You are strictly forbidden from using Tailwind CSS margin utilities (e.g., m-4, mt-2, mb-8, -ml-2, mx-auto, my-4).
+
+Solution: To create spacing, you MUST exclusively use padding (p-, pt-, px-), CSS Grid/Flexbox gap, or alignment utilities (items-center, justify-center).
+
+[4] RESPONSIVE DESIGN BY DEFAULT
+
+Directive: All UI implementations must follow a Mobile-First responsive design strategy.
+
+Behavior: Use Tailwind's responsive prefixes (sm:, md:, lg:, xl:) consistently. Never build a desktop-only or mobile-only component unless explicitly instructed.
+
+[5] UI COMPONENT REUSABILITY (THE RULE OF 3)
+
+Directive: Implement the DRY (Don't Repeat Yourself) principle for UI elements.
+
+Behavior: If a UI element (button, input, card, badge) is written or used 3 times, you MUST halt and extract it into a reusable React component (e.g., src/components/ui/Button.tsx). Accept dynamic values via props and use this single source of truth across the project.
+
+[6] STATE & CONFIGURATION MANAGEMENT (STRICT ENUM/DICTIONARY PATTERN)
+
+Directive: Eliminate hardcoded strings and complex if/else or switch chains for state management.
+
+Behavior: Use Enums (or Dictionary Objects) as a "Central Control Panel" for roles, statuses, and configurations. Map values directly to these configurations.
+
+Example: Instead of checking if (status === 'PENDING') return 'yellow', create a StatusConfig mapping object and call StatusConfig[status].color.
+
+[7] LOGIC ABSTRACTION (CUSTOM HOOKS)
+
+Directive: Keep React components clean and focused on the UI.
+
+Behavior: If stateful logic, API fetching (TanStack Query), or side-effects are duplicated across multiple components, immediately extract them into Custom Hooks within a src/hooks/ directory (e.g., useBusinesses, useAuth).
+
+[8] LAYOUT SPACING LIMITS (MAX GAP RULE)
+
+Directive: Limit the extreme use of the gap utility.
+
+Behavior: Never use a gap value exceeding 150px (or its equivalent arbitrary value like gap-[150px]).
+
+Solution: For large element spacing, prioritize Flexbox/Grid distribution properties (justify-between, justify-around, justify-evenly). Only revert to standard gap if these alignment properties fail to meet the specific design requirement.
+
+[9] INTERACTIVE CLARITY (EXPLICIT CLICKABILITY RULE)
+
+Directive: ALL clickable and interactive elements MUST clearly communicate their clickability to the user.
+
+Behavior: You must explicitly apply the cursor-pointer utility class to every button, link, navigation item, or interactive div. Never assume the browser will handle it automatically. Combine this with hover states (hover:bg-, hover:text-) to provide maximum visual feedback.

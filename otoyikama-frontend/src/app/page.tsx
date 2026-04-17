@@ -1,24 +1,20 @@
-"use client";
-
-import { useBusinesses } from "@/components/hooks/useBusinesses";
+import { Button } from "@/components/ui/Button";
 
 export default function HomePage() {
-  const { data: businesses, isLoading, error } = useBusinesses();
-
-  if (isLoading) return <div>Yükleniyor...</div>;
-  if (error) return <div>Hata oluştu!</div>;
-
   return (
-    <main className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Oto Yıkamacılar</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {businesses?.map((b: any) => (
-          <div key={b.id} className="border p-4 rounded-lg shadow">
-            <h2 className="font-semibold">{b.name}</h2>
-            <p className="text-gray-600">{b.address}</p>
-          </div>
-        ))}
+    // padding (py, px) ve gap ile hiyerarşi kurduk, sıfır margin!
+    <div className="flex flex-col items-center justify-center w-full px-4 py-20 gap-6 text-center">
+      <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
+        Aracınız İçin Profesyonel Bakım
+      </h1>
+      <p className="text-lg text-gray-600 max-w-2xl">
+        Şehrinizdeki en iyi oto yıkamacılardan saniyeler içinde randevu alın. 
+        Sıra beklemeden temizliğin tadını çıkarın.
+      </p>
+      
+      <div className="flex items-center gap-4 py-4">
+        <Button variant="primary">Hemen Randevu Al</Button>
       </div>
-    </main>
+    </div>
   );
 }
